@@ -1,60 +1,65 @@
 <!DOCTYPE html>
-<html lamg = "ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Товары</title>
-    </head>
-    <body>
-        <div id="header">Хэдер</div>
-        <div id="menu">
-            <ul>
-                <li><a href="../index.html">Главная</a></li>
-                <li><a href="news.html">Новости</a></li>
-                <li><a href="practices.html">Практики</a></li>
-                <li><a href="goods.html">Товары</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товары - Семестровая работа</title>
+    <link rel="stylesheet" href="../style/styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="header">Хэдер</div>
+        <div class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a class="nav-link" href="../index.html">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="news.html">Новости</a></li>
+                <li class="nav-item"><a class="nav-link" href="practices.html">Практики</a></li>
+                <li class="nav-item"><a class="nav-link" href="goods.html">Товары</a></li>
+                <li class="nav-item"><a class="nav-link" href="contacts.html">Контакты</a></li>
             </ul>
         </div>
-        <div id="content">
+        <div class="content">
             <h1>Каталог товаров</h1>
             
-            <div>
-                <img src="../images/goods1.jpg" alt="Ноутбук" width="200" height="200">
-                <p><strong>MacBook Air M4</strong></p>
-                <p>Цена: 89 990 руб.</p>
-            </div>
-            
-            <div>
-                <img src="../images/goods2.jpg" alt="Клавиатура" width="200" height="200">
-                <p><strong>Lofree Flow84</strong></p>
-                <p>Цена: 7 500 руб.</p>
-            </div>
-            
-            <div>
-                <img src="../images/goods3.jpg" alt="Мышь" width="200" height="200">
-                <p><strong>Logitech MX Master 3S</strong></p>
-                <p>Цена: 2 990 руб.</p>
-            </div>
-            
-            <div>
-                <img src="../images/goods4.jpg" alt="Монитор" width="200" height="200">
-                <p><strong>Dell UltraSharp QHD 27"</strong></p>
-                <p>Цена: 24 990 руб.</p>
-            </div>
-            
-            <div>
-                <img src="../images/goods5.jpg" alt="Наушники" width="200" height="200">
-                <p><strong>Logitech G435</strong></p>
-                <p>Цена: 4 500 руб.</p>
-            </div>
-            
-            <div>
-                <img src="../images/goods6.jpg" alt="Веб-камера" width="200" height="200">
-                <p><strong>Logitech C920 Pro</strong></p>
-                <p>Цена: 3 200 руб.</p>
+            <div class="goods-grid">
+                <div class="goods-card">
+                    <img class="goods-image" src="../images/goods1.jpg" alt="Ноутбук">
+                    <p class="goods-name">MacBook Air M4</p>
+                    <p class="goods-price">89 990 руб.</p>
+                </div>
+                
+                <div class="goods-card">
+                    <img class="goods-image" src="../images/goods2.jpg" alt="Клавиатура">
+                    <p class="goods-name">Lofree Flow84</p>
+                    <p class="goods-price">7 500 руб.</p>
+                </div>
+                
+                <div class="goods-card">
+                    <img class="goods-image" src="../images/goods3.jpg" alt="Мышь">
+                    <p class="goods-name">Logitech MX Master 3S</p>
+                    <p class="goods-price">2 990 руб.</p>
+                </div>
+                
+                <div class="goods-card">
+                    <img class="goods-image" src="../images/goods4.jpg" alt="Монитор">
+                    <p class="goods-name">Dell UltraSharp QHD 27"</p>
+                    <p class="goods-price">24 990 руб.</p>
+                </div>
+                
+                <div class="goods-card">
+                    <img class="goods-image" src="../images/goods5.jpg" alt="Наушники">
+                    <p class="goods-name">Logitech G435</p>
+                    <p class="goods-price">4 500 руб.</p>
+                </div>
+                
+                <div class="goods-card">
+                    <img class="goods-image" src="../images/goods6.jpg" alt="Веб-камера">
+                    <p class="goods-name">Logitech C920 Pro</p>
+                    <p class="goods-price">3 200 руб.</p>
+                </div>
             </div>
         </div>
-        <div id="footer">Футер</div>
-    </body>
+        <div class="footer">Футер</div>
+    </div>
+</body>
 </html>
