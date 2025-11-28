@@ -3,8 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Товары</title>
+    <title>Товары - Семестровая работа</title>
     <link rel="stylesheet" href="../style/styles.css">
+    <style>
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        dialog {
+            border: none;
+            border-radius: 15px;
+            padding: 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            animation: slideUp 0.3s ease;
+            max-width: 700px;
+            width: 90vw;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        
+        .product-modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px 15px 0 0;
+            margin: 0;
+        }
+        
+        .product-modal-header h2 {
+            margin: 0;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .product-modal-content {
+            padding: 2rem;
+        }
+        
+        .product-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .product-detail-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid #f8f9fa;
+        }
+        
+        .product-detail-info h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        
+        .product-price-large {
+            font-size: 2rem;
+            color: #667eea;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+        
+        .product-description {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .product-specs {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .product-specs li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .product-specs li:last-child {
+            border-bottom: none;
+        }
+        
+        .spec-label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .spec-value {
+            color: #7f8c8d;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .quantity-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            background: #764ba2;
+            transform: scale(1.1);
+        }
+        
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            font-size: 1.2rem;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            padding: 0.5rem;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-add-cart {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .btn-add-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(79, 172, 254, 0.4);
+        }
+        
+        .btn-close {
+            background: #f8f9fa;
+            color: #2c3e50;
+            border: 2px solid #e9ecef;
+        }
+        
+        .btn-close:hover {
+            background: #e9ecef;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .product-details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            dialog {
+                margin: 1rem;
+                width: calc(100vw - 2rem);
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+        }
+        
+        .product-card {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div class="page-container">
@@ -26,37 +228,37 @@
             <h1>Каталог товаров</h1>
             
             <section class="products-grid">
-                <article class="product-card">
+                <article class="product-card" onclick="openProductModal('MacBook Air M4', '../images/goods1.jpg', '89 990', 'Ноутбук Apple с чипом M4.', ['Чип: Apple M4', 'RAM: 24 GB', 'SSD: 512 GB', 'Дисплей: 13.6\&quot;'])">
                     <img class="product-image" src="../images/goods1.jpg" alt="Ноутбук">
                     <h2 class="product-name">MacBook Air M4</h2>
                     <p class="product-price">89 990 руб.</p>
                 </article>
                 
-                <article class="product-card">
+                <article class="product-card" onclick="openProductModal('Lofree Flow84', '../images/goods2.jpg', '7 500', ',Беспроводная низкопрофильная механическая клавиатура.', ['Тип: Механическая', 'Переключатели: Kailh Specter Linear Switch', 'Подключение: Bluetooth 5.0', 'Подсветка: RGB+LED'])">
                     <img class="product-image" src="../images/goods2.jpg" alt="Клавиатура">
                     <h2 class="product-name">Lofree Flow84</h2>
                     <p class="product-price">7 500 руб.</p>
                 </article>
                 
-                <article class="product-card">
+                <article class="product-card" onclick="openProductModal('Logitech MX Master 3S', '../images/goods3.jpg', '2 990', 'Беспроводная мышь.', ['Сенсор: 8000 DPI', 'Вес: 141 г', 'Подключение: Bluetooth/USB'])">
                     <img class="product-image" src="../images/goods3.jpg" alt="Мышь">
                     <h2 class="product-name">Logitech MX Master 3S</h2>
                     <p class="product-price">2 990 руб.</p>
                 </article>
                 
-                <article class="product-card">
+                <article class="product-card" onclick="openProductModal('Dell UltraSharp QHD 27\&quot;', '../images/goods4.jpg', '24 990', 'Профессиональный монитор с QHD разрешением.', ['Разрешение: 2560x1440', 'Частота: 60 Hz', 'Панель: IPS'])">
                     <img class="product-image" src="../images/goods4.jpg" alt="Монитор">
                     <h2 class="product-name">Dell UltraSharp QHD 27"</h2>
                     <p class="product-price">24 990 руб.</p>
                 </article>
                 
-                <article class="product-card">
+                <article class="product-card" onclick="openProductModal('Logitech G435', '../images/goods5.jpg', '4 500', 'Беспроводные игровые наушники.', ['Вес: 165 г', 'Батарея: 18 часов', 'Подключение: Bluetooth/USB', 'Микрофон: Встроенный'])">
                     <img class="product-image" src="../images/goods5.jpg" alt="Наушники">
                     <h2 class="product-name">Logitech G435</h2>
                     <p class="product-price">4 500 руб.</p>
                 </article>
                 
-                <article class="product-card">
+                <article class="product-card" onclick="openProductModal('Logitech C920 Pro', '../images/goods6.jpg', '3 200', 'Full HD веб-камера.', ['Разрешение: 1080p', 'FPS: 30', 'Автофокус: Да', 'Микрофоны: 2 стерео'])">
                     <img class="product-image" src="../images/goods6.jpg" alt="Веб-камера">
                     <h2 class="product-name">Logitech C920 Pro</h2>
                     <p class="product-price">3 200 руб.</p>
@@ -67,6 +269,101 @@
         <footer class="footer">
             <p>Футер</p>
         </footer>
+        
+        <dialog id="productModal">
+            <div class="product-modal-header">
+                <h2 id="modalProductName">Название товара</h2>
+            </div>
+            <div class="product-modal-content">
+                <div class="product-details-grid">
+                    <div>
+                        <img id="modalProductImage" class="product-detail-image" src="" alt="Товар">
+                    </div>
+                    <div class="product-detail-info">
+                        <h3>Описание</h3>
+                        <p id="modalProductDescription"></p>
+                        <div class="product-price-large">
+                            <span id="modalProductPrice"></span> руб.
+                        </div>
+                        
+                        <div class="quantity-selector">
+                            <span style="font-weight: 600; color: #2c3e50;">Количество:</span>
+                            <button class="quantity-btn" onclick="changeQuantity(-1)">−</button>
+                            <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="99" readonly>
+                            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-description">
+                    <h3 style="margin-top: 0; color: #2c3e50;">Характеристики</h3>
+                    <ul id="modalProductSpecs" class="product-specs">
+                    </ul>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="btn btn-add-cart" onclick="addToCart()">Добавить в корзину</button>
+                    <button class="btn btn-close" onclick="productModal.close()">Закрыть</button>
+                </div>
+            </div>
+        </dialog>
+        
+        <script>
+            function openProductModal(name, image, price, description, specs) {
+                document.getElementById('modalProductName').textContent = name;
+                document.getElementById('modalProductImage').src = image;
+                document.getElementById('modalProductImage').alt = name;
+                document.getElementById('modalProductPrice').textContent = price;
+                document.getElementById('modalProductDescription').textContent = description;
+                
+                const specsList = document.getElementById('modalProductSpecs');
+                specsList.innerHTML = '';
+                specs.forEach(spec => {
+                    const [label, value] = spec.split(': ');
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <span class="spec-label">${label}:</span>
+                        <span class="spec-value">${value}</span>
+                    `;
+                    specsList.appendChild(li);
+                });
+                
+                document.getElementById('quantity').value = 1;
+                
+                productModal.showModal();
+            }
+            
+            function changeQuantity(change) {
+                const quantityInput = document.getElementById('quantity');
+                let currentValue = parseInt(quantityInput.value);
+                let newValue = currentValue + change;
+                
+                if (newValue >= 1 && newValue <= 99) {
+                    quantityInput.value = newValue;
+                }
+            }
+            
+            function addToCart() {
+                const productName = document.getElementById('modalProductName').textContent;
+                const quantity = document.getElementById('quantity').value;
+                const price = document.getElementById('modalProductPrice').textContent;
+                
+                console.log('Добавлено в корзину:', {
+                    product: productName,
+                    quantity: quantity,
+                    price: price
+                });
+                
+                alert(`Товар "${productName}" (${quantity} шт.) добавлен в корзину!`);
+                productModal.close();
+            }
+            
+            document.getElementById('productModal').addEventListener('click', function(event) {
+                if (event.target === this) {
+                    this.close();
+                }
+            });
+        </script>
     </div>
 </body>
 </html>
